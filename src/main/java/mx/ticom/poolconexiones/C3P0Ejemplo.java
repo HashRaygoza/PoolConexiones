@@ -11,8 +11,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 public class C3P0Ejemplo {
+
+    private final static Logger LOGGER = Logger.getLogger("mx.ticom.poolconexiones.C3P0Ejemplo");
 
     public static void main(String[] args) {
         try {
@@ -28,28 +31,30 @@ public class C3P0Ejemplo {
                 String sql = "SELECT * FROM pruebas.prueba";
                 // Obtenemos los datos
                 ResultSet data = consulta.executeQuery(sql);
-                data.next();
 
-                Integer puerto = data.getInt("puerto_serial");
-                Integer impresora = data.getInt("puerto_impresora");
-                Integer red = data.getInt("puerto_red");
-                Integer scaner = data.getInt("puerto_escaner");
+                if (data.next() == true) {
 
-                // Los presentamos en pantalla
-                System.out.println("Vuelta numero " + i);
-                System.out.println("Puerto " + puerto);
-                System.out.println("Impresora " + impresora);
-                System.out.println("Red " + red);
-                System.out.println("Escaner " + scaner);
-                System.out.println("");
-                System.out.println("");
+                    Integer puerto = data.getInt("puerto_serial");
+                    Integer impresora = data.getInt("puerto_impresora");
+                    Integer red = data.getInt("puerto_red");
+                    Integer scaner = data.getInt("puerto_escaner");
+
+                    // Los presentamos en pantalla
+                    System.out.println("Vuelta numero " + i);
+                    System.out.println("Puerto " + puerto);
+                    System.out.println("Impresora " + impresora);
+                    System.out.println("Red " + red);
+                    System.out.println("Escaner " + scaner);
+                    System.out.println("");
+                    System.out.println("");
+                }
 
                 // Cerramos la conexion, esto es vital, de no hacerlo el pool creara una nueva conexion
                 // pero al cerrar liberamos esa conexion para que el pool la reuse
                 cx.close();
 
                 // Un retrazo de 10 segundos para poder ver las conexiones en MySQL Workbench
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             }
 
         } catch (IOException ex) {

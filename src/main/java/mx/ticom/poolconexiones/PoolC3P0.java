@@ -42,7 +42,7 @@ public class PoolC3P0 {
         // Numero de conexiones con las que iniciara el pool
         cpds.setInitialPoolSize(0);
         // Minimo de conexiones que tendra el pool
-        cpds.setMinPoolSize(0);
+        cpds.setMinPoolSize(5);
         // Numero de conexiones a crear cada incremento
         cpds.setAcquireIncrement(1);
         // Maximo numero de conexiones
