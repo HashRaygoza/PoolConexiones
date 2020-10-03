@@ -56,6 +56,7 @@ public class C3P0Ejemplo {
             System.out.println("Error de entrada salida");
         } catch (SQLException ex) {
             System.out.println("Error de conexion a base de datos");
+            ex.printStackTrace();
         } catch (PropertyVetoException ex) {
             System.out.println("Error de propiedades");
         } catch (InterruptedException ex) {

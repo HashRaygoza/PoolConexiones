@@ -31,14 +31,13 @@ public class PoolC3P0 {
         // Creamos la fuente de datos
         cpds = new ComboPooledDataSource();
         // Que driver de base de datos usaremos
-        cpds.setDriverClass("com.mysql.jdbc.Driver");
+        cpds.setDriverClass("com.mysql.cj.jdbc.Driver");
         // La url de la base de datos a la que nos conectaremos
-        cpds.setJdbcUrl("jdbc:mysql://127.0.0.1/");
+        cpds.setJdbcUrl("jdbc:mysql://127.0.0.1/?serverTimezone=UTC");
         // Usuario de esa base de datos
         cpds.setUser("usuario");
         // ContraseÃ±a de la base de datos
-        cpds.setPassword("contrasena");
-
+        cpds.setPassword("contrasena");        
         // Configuramos el pool
         // Numero de conexiones con las que iniciara el pool
         cpds.setInitialPoolSize(0);
@@ -54,7 +53,7 @@ public class PoolC3P0 {
         cpds.setAcquireRetryAttempts(2);
         // Que se genere una excepcion si no se puede conectar
         cpds.setBreakAfterAcquireFailure(true);
-    }
+            }
 
     /**
      * Nos regresa la instancia actual del pool, en caso que no halla una
